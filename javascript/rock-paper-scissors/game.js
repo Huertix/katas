@@ -1,54 +1,73 @@
+function Rock(){
+	this.element = 'rock';
 
-var hash = {
-	'rock-paper':'lose',
-	'scissors-rock':'lose',
-	'paper-scissors':'lose',
-	'rock-scissors':'wins',
-	'scissors-paper':'wins',
-	'paper-rock':'wins',
-	'rock-rock':'tie',
-	'scissors-scissors':'tie',
-	'paper-paper':'tie'
+	this.playAgainst = function(other){
+		if(other == 'scissors')
+			return 'wins';
+		else if(other == 'paper'){
+			return 'lose';
+		}
+		else
+			return 'tie';
+	}
+
+	this.getName = function(){
+		return this.element;
+	}
 }
 
-function game(hand1,hand2){
-	return hash[hand1+'-'+hand2];
+function Paper(){
+	this.element = 'paper';
+
+	this.playAgainst = function(other){
+		if(other == 'rock')
+			return 'wins';
+		else if(other == 'scissors'){
+			return 'lose';
+		}
+		else
+			return 'tie';
+	}
+
+	this.getName = function(){
+		return this.element;
+	}
+}
+
+function Scissors(){
+	this.element = 'scissors';
+
+	this.playAgainst = function(other){
+		if(other == 'paper')
+			return 'wins';
+		else if(other == 'rock'){
+			return 'lose';
+		}
+		else
+			return 'tie';
+	}
+
+	this.getName = function(){
+		return this.element;
+	}
 }
 
 
+function game(hand1, hand2){
+	var bet =  hand1.playAgainst(hand2.getName());
+	return bet;
+}
 
-describe("game1 - tie", function() {
-	it("rock vs rock", function() {
-		expect(game('rock','rock')).toBe("tie");		
+
+describe("Game test", function() {
+	it("rock vs scissors -> rock wins", function() {
+		expect(game(new Rock(), new Scissors())).toBe('wins');	
 	});
-	it("scissors vs scissors", function() {
-		expect(game('scissors','scissors')).toBe("tie");		
+	it("rock vs rock -> tie", function() {
+		expect(game(new Rock(), new Rock())).toBe('tie');	
 	});
-	it("paper vs paper", function() {
-		expect(game('paper','paper')).toBe("tie");		
+	it("rock vs paper -> rock lose", function() {
+		expect(game(new Rock(), new Paper())).toBe('lose');	
 	});
 });
 
-describe("game2 - win", function() {
-	it("rock vs scissors", function() {
-		expect(game('rock','scissors')).toBe("wins");		
-	});
-	it("scissor vs paper", function() {
-		expect(game('scissors','paper')).toBe("wins");		
-	});
-	it("paper vs rock", function() {
-		expect(game('paper','rock')).toBe("wins");		
-	});
-});
-
-describe("game3 - lose", function() {
-	it("rock vs paper", function() {
-		expect(game('rock','paper')).toBe("lose");		
-	});
-	it("scissors vs rock", function() {
-		expect(game('scissors','rock')).toBe("lose");		
-	});
-	it("rock vs paper", function() {
-		expect(game('paper','scissors')).toBe("lose");		
-	});
-});
