@@ -1,47 +1,47 @@
 
 var hash = {
-	'rock':'paper',
-	'scissors':'rock',
-	'paper':'scissors'
+	'rock-paper':'lose',
+	'scissors-rock':'lose',
+	'paper-scissors':'lose',
+	'rock-scissors':'wins',
+	'scissors-paper':'wins',
+	'paper-rock':'wins',
+	'rock-rock':'tie',
+	'scissors-scissors':'tie',
+	'paper-paper':'tie'
 }
 
 function game(hand1,hand2){
-	if(hand1 == hand2)
-		return 'tie';
-	else if(hash[hand1] == hand2)
-		return 'lose';
-	else
-		return 'wins';
-
-
-
+	return hash[hand1+'-'+hand2];
 }
 
 
 
-/*
-rules:
-	#done rock vs rock -> tie
-	rock vs scissors -> wins
-	rock vs paper -> lose
-	scissors vs rock -> lose
-	#done scissors vs scissors -> tie
-	scissors vs paper -> wins
-	paper vs rock -> wins
-	paper vs scissors -> lose
-	#done paper vs paper -> tie
-*/
-describe("game1", function() {
+describe("game1 - tie", function() {
 	it("rock vs rock", function() {
 		expect(game('rock','rock')).toBe("tie");		
 	});
+	it("scissors vs scissors", function() {
+		expect(game('scissors','scissors')).toBe("tie");		
+	});
+	it("paper vs paper", function() {
+		expect(game('paper','paper')).toBe("tie");		
+	});
 });
-describe("game2", function() {
+
+describe("game2 - win", function() {
 	it("rock vs scissors", function() {
 		expect(game('rock','scissors')).toBe("wins");		
 	});
+	it("scissor vs paper", function() {
+		expect(game('scissors','paper')).toBe("wins");		
+	});
+	it("paper vs rock", function() {
+		expect(game('paper','rock')).toBe("wins");		
+	});
 });
-describe("game3", function() {
+
+describe("game3 - lose", function() {
 	it("rock vs paper", function() {
 		expect(game('rock','paper')).toBe("lose");		
 	});
