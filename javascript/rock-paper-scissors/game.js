@@ -1,18 +1,20 @@
+
+var hash = {
+	'rock':'paper',
+	'scissors':'rock',
+	'paper':'scissors'
+}
+
 function game(hand1,hand2){
 	if(hand1 == hand2)
 		return 'tie';
-	else if(hand1 == 'rock' && hand2=='paper')
-		return 'lose';
-	else if(hand1 == 'scissors' && hand2=='rock')
-		return 'lose';
-	else if(hand1 == 'paper' && hand2=='scissors')
-		return 'lose';
-	else if(hand1 == '' && hand2=='')
-		return 'lose';
-	else if(hand1 == '' && hand2=='')
+	else if(hash[hand1] == hand2)
 		return 'lose';
 	else
 		return 'wins';
+
+
+
 }
 
 
