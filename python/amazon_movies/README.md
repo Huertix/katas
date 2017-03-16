@@ -11,8 +11,9 @@ Return a list containing the nodes of the N highest rated movies.
 Constraints
 0 <= N
 
-Note:
+__Note__:
 
+```
 		A(5.0)
 		 /\
 		/  \
@@ -20,6 +21,7 @@ Note:
         \  / 
          \/
        C(7.0)
+```
        
 Input:
 movie = A
@@ -34,6 +36,7 @@ Although 10 movies are requested, but only 3 related movies are available. So, t
 Helper Description
 The following class is used to represent a movie:
 
+```
 class Movie:
 	id = None
 	rating = None
@@ -55,9 +58,9 @@ class Movie:
 
 	def addSimilarMovies(self, movie):
 		self.similar.append(movie)
-
-
-
+```
+```
 # RETURN AN EMPTY LIST IF NO SIMILAR MOVIE TO THE GIVEN MOVIE IS FOUND
 def getMovieRecommedation(movie, N):
 	pass
+```
