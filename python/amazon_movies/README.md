@@ -1,6 +1,6 @@
-There is a network of similar movies which are attributed by a unique identifier and a rating. each movie in the network is realted to one or more movies in the network throught a direct connection.
+There is a network of similar movies which are attributed by a unique identifier and a rating. each movie in the network is related to one or more movies in the network through a direct connection.
 
-Design a way to find th N highest rated movies for a given movie in the network of realted movies. The original movie should not be considered as a potential recommendation. if the number of requested movies is greater than the total number of movies, then output all the related movies
+Design a way to find th N highest rated movies for a given movie in the network of related movies. The original movie should not be considered as a potential recommendation. if the number of requested movies is greater than the total number of movies, then output all the related movies
 
 Input
 The input to the function/method consists of two arguments - movie, representing the node of the origianl movie in the movie network and N, an integer representing the number of requested movies.
@@ -20,7 +20,7 @@ __Note__:
    B(6.2)  C(6.0)
         \  / 
          \/
-       C(7.0)
+       D(5.4)
 ```
        
 Input:
