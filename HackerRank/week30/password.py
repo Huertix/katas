@@ -5,20 +5,27 @@ import sys
 # import string
 import random
 
+consonants = 'bcdfghjklmnpqrstvwxz'
+vowels = 'aeiou'
 
-def generate_password(result, letters):
+
+def generate_password(result):
     if not result:
-        return list(letters)
+        return list(consonants) + list(vowels)
 
     if len(result) <=1:
         new_result = []
+        letters = consonants
+        if result[0][-1] in consonants:
+            letters = vowels
+
         for i in letters:
             new_result.append(result[0]+i)
         return new_result
 
     half = len(result)/2
-    left =  generate_password(result[:half], letters)
-    right = generate_password(result[half:], letters)
+    left =  generate_password(result[:half])
+    right = generate_password(result[half:])
     return right + left
     
 
@@ -28,20 +35,16 @@ n = int(raw_input().strip())
 if n < 1: n = 1
 if n > 6: n = 6
 
-consonants = 'bcdfghjklmnpqrstvwxz'
-vowels = 'aeiou'
+
 
 letters = [consonants, vowels]
 option = random.randint(0, 1)
 
 result = []
 
-if n <= 1:
-    result = list(consonants) + list(vowels)
-else:
-    for x in range(0, n):
-        result = generate_password(result, letters[option])
-        option = not option
+for x in range(0, n):
+    result = generate_password(result)
+    option = not option
 
 # print len(result)
 for item in result:
