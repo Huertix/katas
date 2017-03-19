@@ -1,8 +1,6 @@
 #!/bin/python
 
 import sys
-# import itertools
-# import string
 import random
 
 consonants = 'bcdfghjklmnpqrstvwxz'
@@ -35,8 +33,6 @@ n = int(raw_input().strip())
 if n < 1: n = 1
 if n > 6: n = 6
 
-
-
 letters = [consonants, vowels]
 option = random.randint(0, 1)
 
@@ -46,7 +42,6 @@ for x in range(0, n):
     result = generate_password(result)
     option = not option
 
-# print len(result)
 for item in result:
     print item
 
