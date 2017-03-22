@@ -8,7 +8,7 @@ def init_script(seed):
 
 	random.seed(seed)
 	movie_list =[]
-	total_movies = 10
+	total_movies = 2500
 
 	for x in range (1, total_movies + 1):
 		score = round(random.uniform(0, 10), 1)
@@ -23,9 +23,12 @@ def init_script(seed):
 	return movie_list
 
 
+# argv1 = requestes movie, argv2 = movies to show
 def main(movie_id=int(sys.argv[1]), movies_to_show = int(sys.argv[2]) ):
 
-	movie_list = init_script(10)
+	sys.setrecursionlimit(2000)
+
+	movie_list = init_script(seed=10)
 
 	if movie_id > len(movie_list) - 1:
 		movie_id = len(movie_list) - 1

@@ -4,6 +4,8 @@ def merge(list1, list2):
 	i = j = 0
 
 	# It orders the list from greater to smaller '>'
+	# run the lists fully
+	# insert the next value only if it is bigger than the other and increse the index
 	while (i < len(list1) and j < len(list2)):
 		if list1[i].getRating() > list2[j].getRating():
 			result.append(list1[i])
@@ -12,6 +14,7 @@ def merge(list1, list2):
 			result.append(list2[j])
 			j += 1
 
+	# update the result list from the index until the end of each list
 	result += list1[i:]
 	result += list2[j:]
 
@@ -30,20 +33,22 @@ def merge_sort_movies(recommended_movies):
 
 
 # Navigate through all the linked movies
-def get_linked_movies(movie, movies_visited):
-	if movie.getId() in map(lambda x: x.getId(), movies_visited):
+def get_linked_movies(movie, movies_visited, aux_list):
+	if movie.getId() in aux_list:
 		return
 	
 	movies_visited.append(movie)
+	aux_list.append(movie.getId())
 	for movie in movie.getSimilaMovies():
-		get_linked_movies(movie, movies_visited)
+		get_linked_movies(movie, movies_visited, aux_list)
 
 	return movies_visited
 	
 
 def getMovieRecommedation(movie, N):
 	movies_visited = []
-	recommended_movies = get_linked_movies(movie, movies_visited)
+	movies_visited_ids = []
+	recommended_movies = get_linked_movies(movie, movies_visited, movies_visited_ids)
 	recommended_movies = merge_sort_movies(recommended_movies)
 
 	# Remove the requested movie from the result list
